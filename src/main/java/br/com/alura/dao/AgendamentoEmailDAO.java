@@ -2,15 +2,18 @@ package br.com.alura.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.PersistenceContext;
 
 import br.com.alura.entidade.AgendamentoEmail;
 
+@Stateless
 public class AgendamentoEmailDAO {
 	
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	public AgendamentoEmailDAO() {
@@ -20,13 +23,9 @@ public class AgendamentoEmailDAO {
 	}
 	
 	public List<AgendamentoEmail> listar(){
-		entityManager.getTransaction().begin();
-		List<AgendamentoEmail> resultado = entityManager.createQuery(
-				"SELECT ae FROM AgendamentoEmail ae", AgendamentoEmail.class
-		).getResultList();
-		entityManager.getTransaction().commit();
-		entityManager.close();
-		return resultado;		
+		return entityManager.createQuery(
+					"SELECT ae FROM AgendamentoEmail ae", AgendamentoEmail.class
+				).getResultList();
 	}
 
 }
