@@ -23,4 +23,16 @@ public class AgendamentoEmailServico {
 		dao.inserir(agendamentoEmail);
 	}
 	
+	public List<AgendamentoEmail> listarNaoAgendados(){
+		return dao.listarNaoAgendados();
+	}
+	
+	public void alterar(AgendamentoEmail agendamentoEmail) {
+		agendamentoEmail.setAgendado(true);
+		dao.alterar(agendamentoEmail);
+	}
+
+	public void enviar(AgendamentoEmail agendamentoEmail) {
+		dao.enviar(agendamentoEmail);
+	}
 }
