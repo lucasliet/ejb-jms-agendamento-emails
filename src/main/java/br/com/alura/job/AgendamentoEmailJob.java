@@ -12,6 +12,16 @@ import br.com.alura.servico.AgendamentoEmailServico;
 @Stateless
 public class AgendamentoEmailJob {
 	
+	private static AgendamentoEmailJob instance;
+	
+	private AgendamentoEmailJob() {}
+	
+	public synchronized static AgendamentoEmailJob getInstance() {
+		if (instance == null)
+			instance = new AgendamentoEmailJob();
+		return instance;
+	}
+	
 	@Inject
 	private AgendamentoEmailServico agendamentoEmailServico;
 	
